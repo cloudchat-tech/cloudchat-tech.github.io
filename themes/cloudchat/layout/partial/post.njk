@@ -1,15 +1,19 @@
-<article class="prose">
-  <header class="article-header">
+{# <article class="prose max-w-none dark:prose-invert lg:prose-xl"> #}
+<article class="prose max-w-none lg:prose-xl">
+  <header>
     {% if is_post() %}
-      <h1 class="article-title" itemprop="name">{{ post.title }}</h1>
+      <h1 class="mb-1">{{ post.title }}</h1>
+      <span class="block text-xs text-gray-500 lg:-mt-10 lg:text-lg">Publised on {{ time_tag(post.date) }}</span>
     {% else %}
       <h1>
-        <a href="{{ url_for(post.path) }}" class="article-title" itemprop="name">{{ post.title }}</a>
+        <a href="{{ url_for(post.path) }}" class="mb-1">{{ post.title }}</a>
       </h1>
     {% endif %}
-    {{ time_tag(post.date) }}
   </header>
-  <div class="article-content" itemprop="articleBody">
+  {% if post.libsynId %}
+    <iframe style="border: none" class="mt-5" src="//html5-player.libsyn.com/embed/destination/id/{{ post.libsynId }}/height/360/theme/custom/autoplay/no/autonext/no/thumbnail/yes/preload/no/no_addthis/no/direction/backward/no-cache/true/render-playlist/no/custom-color/141414/" height="90" width="100%" scrolling="no" allowfullscreenwebkitallowfullscreen mozallowfullscreen gallowfullscreen msallowfullscreen></iframe>
+  {% endif %}
+  <div class="-mt-6">
     {{ post.content }}
   </div>
 </article>

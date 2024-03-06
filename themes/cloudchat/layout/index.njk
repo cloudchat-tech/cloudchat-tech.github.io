@@ -1,6 +1,7 @@
 {% for post in page
     .posts
     .toArray() %}
+
     {% if loop.index == 1 %}
         {{ partial('partial/post', {post: post}) }}
     {% else %}
@@ -11,5 +12,7 @@
             </a>
         </article>
     {% endif %}
+
 {% endfor %}
+
 {{ page.content }}

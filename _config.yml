@@ -81,7 +81,7 @@ pagination_dir: page
 marked:
   gfm: true
   pedantic: false
-  breaks: true
+  breaks: false
   smartLists: true
   smartypants: true
   quotes: '“”‘’'
