@@ -1,0 +1,15 @@
+<article class="prose">
+  <header class="article-header">
+    {% if is_post() %}
+      <h1 class="article-title" itemprop="name">{{ post.title }}</h1>
+    {% else %}
+      <h1>
+        <a href="{{ url_for(post.path) }}" class="article-title" itemprop="name">{{ post.title }}</a>
+      </h1>
+    {% endif %}
+    {{ time_tag(post.date) }}
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    {{ post.content }}
+  </div>
+</article>
