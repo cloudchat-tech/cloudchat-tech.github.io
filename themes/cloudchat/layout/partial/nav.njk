@@ -4,10 +4,16 @@
             <h2 class="text-xl font-bold">Latest Episodes</h2>
         </div>
         <ul>
-            <li>Episode 1</li>
-            <li>Episode 2</li>
-            <li>Episode 3</li>
-            <!-- Add more episodes here -->
+            {% set posts = site.posts.sort('-date') %}
+            {% for post in posts
+                .slice('0', '4')
+                .toArray() %}
+                <li>
+                    <a href="{{ url_for(post.path) }}">{{ "#{{post.episode}}: " if post.episode}}{{ post.title }} ({{ date(post.date, 'YYYY-MM-DD') }})</a>
+                </li>
+            {% else %}
+                <li>Episodes coming soon!</li>
+            {% endfor %}
         </ul>
     </div>
 </nav>

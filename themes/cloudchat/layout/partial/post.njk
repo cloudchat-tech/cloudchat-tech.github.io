@@ -1,7 +1,7 @@
 {# <article class="prose max-w-none dark:prose-invert lg:prose-xl"> #}
 <article class="prose max-w-none lg:prose-xl">
   <header>
-    {% if is_post() %}
+    {% if is_post()or is_home_first_page() %}
       <h1 class="mb-1">{{ post.title }}</h1>
       <span class="block text-xs text-gray-500 lg:-mt-10 lg:text-lg">Publised on {{ time_tag(post.date) }}</span>
     {% else %}
@@ -15,5 +15,8 @@
   {% endif %}
   <div class="-mt-6">
     {{ post.content }}
+  </div>
+  <div class="mt-4 text-right text-xs text-gray-500">
+    <a href="{{ url_for(post.path) }}" class="mb-1 text-gray-500">Permalink</a>
   </div>
 </article>
