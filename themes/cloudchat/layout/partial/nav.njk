@@ -1,15 +1,28 @@
 <nav class="col-span-1 md:col-span-2 mb-4">
-    <div>
+    <div class="mb-4">
+        <div class="bg-gray-800 text-white px-4 py-2 mb-2 rounded-md">
+            <h2 class="text-xl font-bold">Subscribe and Socials</h2>
+        </div>
+        <ul class="px-4">
+
+            <li><a href="" class="font-bold hover:underline">iTunes</a></li>
+            <li><a href="" class="font-bold hover:underline">RSS</a></li>
+            <li><a href="" class="font-bold hover:underline">Discord</a></li>
+            <li><a href="" class="font-bold hover:underline">Twitter</a></li>
+        </ul>
+    </div>
+    <div class="mb-4">
         <div class="bg-gray-800 text-white px-4 py-2 mb-2 rounded-md">
             <h2 class="text-xl font-bold">Latest Episodes</h2>
         </div>
-        <ul>
+        <ul class="px-4">
             {% set posts = site.posts.sort('-date') %}
             {% for post in posts
                 .slice('0', '4')
                 .toArray() %}
                 <li>
-                    <a href="{{ url_for(post.path) }}">{{ "#" + post.episode.toString().padStart(4, '0') + ": " if post.episode.toString()}}{{ post.title }} ({{ date(post.date, 'YYYY-MM-DD') }})</a>
+                    <a href="{{ url_for(post.path) }}" class="font-bold hover:underline">{{ "#" + post.episode.toString().padStart(4, '0') + ": " if post.episode.toString()}}{{ post.title }}
+                        <span class="break-keep">({{ date(post.date, 'YYYY-MM-DD') }})</span></a>
                 </li>
             {% else %}
                 <li>Episodes coming soon!</li>
