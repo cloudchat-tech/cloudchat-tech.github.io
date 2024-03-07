@@ -9,7 +9,7 @@
                 .slice('0', '4')
                 .toArray() %}
                 <li>
-                    <a href="{{ url_for(post.path) }}">{{ "#{{post.episode}}: " if post.episode}}{{ post.title }} ({{ date(post.date, 'YYYY-MM-DD') }})</a>
+                    <a href="{{ url_for(post.path) }}">{{ "#" + post.episode.toString().padStart(4, '0') + ": " if post.episode.toString()}}{{ post.title }} ({{ date(post.date, 'YYYY-MM-DD') }})</a>
                 </li>
             {% else %}
                 <li>Episodes coming soon!</li>
