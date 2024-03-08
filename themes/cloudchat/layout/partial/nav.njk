@@ -3,13 +3,15 @@
         <div class="bg-gray-800 text-white px-4 py-2 mb-2 rounded-md">
             <h2 class="text-xl font-bold">Subscribe and Socials</h2>
         </div>
-        <ul class="px-4">
-            {% set linkClasses = 'font-bold hover:underline'  %}
-            <li><a href="http://itunes.cloudchat.tech/" class="{{linkClasses}}">iTunes</a></li>
-            <li><a href="http://spotify.cloudchat.tech/" class="{{linkClasses}}">Spotify</a></li>
-            <li><a href="http://feed.cloudchat.tech/" class="{{linkClasses}}">RSS</a></li>
-            <li><a href="http://discord.cloudchat.tech/" target="_blank" class="{{linkClasses}}">Discord</a></li>
-            <li><a href="http://twitter.cloudchat.tech/" class="{{linkClasses}}">Twitter</a></li>
+        <ul class="px-4 flex flex-row justify-left gap-4">
+            {% set socials = ['itunes', 'spotify', 'feed', 'discord', 'twitter'] %}
+            {% for social in socials %}
+                <li class="block w-20 hover:animate-heartbeat">
+                    <a href="http://{{social}}.cloudchat.tech/" target="_blank">
+                        <img src="{{url_for('/icons/social-' + social + '.svg')}}"/>
+                    </a>
+                </li>
+            {% endfor %}
         </ul>
     </div>
     <div class="mb-4">
@@ -23,7 +25,8 @@
                 .toArray() %}
                 <li>
                     <a href="{{ url_for(post.path) }}" class="font-bold hover:underline">{{ "#" + post.episode.toString().padStart(4, '0') + ": " if post.episode.toString()}}{{ post.title }}
-                        <span class="break-keep">({{ date(post.date, 'YYYY-MM-DD') }})</span></a>
+                        <span class="break-keep">({{ date(post.date, 'YYYY-MM-DD') }})</span>
+                    </a>
                 </li>
             {% else %}
                 <li>Episodes coming soon!</li>
