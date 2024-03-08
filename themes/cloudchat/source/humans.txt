@@ -1,9 +1,9 @@
 =====================================================================
 /*               humans.txt | https://humanstxt.org/               */
 =====================================================================
-  ____ _                 _  ____ _           _    _            _     
- / ___| | ___  _   _  __| |/ ___| |__   __ _| |_ | |_ ___  ___| |__  
-| |   | |/ _ \| | | |/ _` | |   | '_ \ / _` | __|| __/ _ \/ __| '_ \ 
+  ____ _                 _  ____ _           _    _            _
+ / ___| | ___  _   _  __| |/ ___| |__   __ _| |_ | |_ ___  ___| |__
+| |   | |/ _ \| | | |/ _` | |   | '_ \ / _` | __|| __/ _ \/ __| '_ \
 | |___| | (_) | |_| | (_| | |___| | | | (_| | |_ | ||  __/ (__| | | |
  \____|_|\___/ \__,_|\__,_|\____|_| |_|\__,_|\__(_)__\___|\___|_| |_|
 
@@ -11,19 +11,19 @@
 /*                              TEAM                               */
 =====================================================================
 
-Cloud Chat is artisinally crafted for you each week by Carl 
-Schweitzer (@carlschweitzer) and Brandon Martinez (@brandonmartinez) 
-directly out of their cozy home offices in Wisconsin and Michigan 
-respectively. 
+CloudChat is artisinally crafted for you each week by Carl
+Schweitzer (@carlschweitzer) and Brandon Martinez (@brandonmartinez)
+directly out of their cozy home offices in Wisconsin and Michigan
+respectively.
 
 =====================================================================
 /*                             THANKS                              */
 =====================================================================
 
-The bespoke website was expertly crafted by *US*! What do you expect 
-from two geeks who put on a show about cloud development??? And 
-finally our super-fly theme song comes courtesy of ORU Music, check 
-out their other creative endevours at: 
+The bespoke website was expertly crafted by *US*! What do you expect
+from two geeks who put on a show about cloud development??? And
+finally our super-fly theme song comes courtesy of ORU Music, check
+out their other creative endevours at:
 
     https://www.youtube.com/@ORUMusic
 
@@ -31,7 +31,7 @@ out their other creative endevours at:
 /*                              SITE                               */
 =====================================================================
 
-We love our website. If you find anything amiss or unkempt, please 
+We love our website. If you find anything amiss or unkempt, please
 send us a pull request. We adore it when guests help us clear out the
 cobwebs.
 

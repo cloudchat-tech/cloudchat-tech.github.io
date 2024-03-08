@@ -17,7 +17,7 @@
     {% endif %}
   </header>
   {% if post.libsynId %}
-    <iframe style="border: none" class="mt-5" src="//html5-player.libsyn.com/embed/destination/id/{{ post.libsynId }}/height/360/theme/custom/autoplay/no/autonext/no/thumbnail/yes/preload/no/no_addthis/no/direction/backward/no-cache/true/render-playlist/no/custom-color/141414/" height="90" width="100%" scrolling="no" allowfullscreenwebkitallowfullscreen mozallowfullscreen gallowfullscreen msallowfullscreen></iframe>
+    <iframe title="CloudChat.tech Episode Player" style="border: none" src="//html5-player.libsyn.com/embed/episode/id/{{ post.libsynId }}/height/90/theme/custom/thumbnail/yes/direction/backward/render-playlist/no/custom-color/1f2937/" height="90" width="100%" scrolling="no"  allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
   {% endif %}
   <div class="-mt-6">
     {{ post.content }}

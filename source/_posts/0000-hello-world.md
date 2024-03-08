@@ -1,6 +1,6 @@
 ---
 episode: 0000
-date: 2024-03-05
+date: 2024-03-08
 libsynId: 30285583
 ---
 
@@ -8,7 +8,7 @@ libsynId: 30285583
 
 ## Summary
 
-In the inaugural episode of Cloud Chat, hosts Carl Schweitzer and Brandon
+In the inaugural episode of CloudChat, hosts Carl Schweitzer and Brandon
 Martinez introduce themselves and discuss their backgrounds. Both hosts have
 extensive experience in the tech world, with Brandon having 14 years of
 experience in software development and consulting, and Carl having nearly seven
