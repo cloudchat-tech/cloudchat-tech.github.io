@@ -14,7 +14,8 @@
 				"yzhang.markdown-all-in-one",
 				"redhat.vscode-yaml",
 				"bradlc.vscode-tailwindcss",
-				"eamodio.gitlens"
+				"eamodio.gitlens",
+				"github.vscode-github-actions"
 			]
 		}
 	}
