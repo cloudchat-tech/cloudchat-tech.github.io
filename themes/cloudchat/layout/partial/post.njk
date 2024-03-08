@@ -8,7 +8,7 @@
     {% if is_post()or is_home_first_page() %}
       <h1 class="mb-1 pr-16">{{ post.title }}</h1>
       <div class="lg:-mt-10">
-        <span class="block text-xs text-gray-500 lg:text-lg">Publised on {{ time_tag(post.date) }}</span>
+        <span class="block text-xs text-gray-500 lg:text-lg">Published on {{ time_tag(post.date) }}</span>
       </div>
     {% else %}
       <h1>
