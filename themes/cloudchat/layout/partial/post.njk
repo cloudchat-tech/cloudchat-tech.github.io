@@ -1,0 +1,28 @@
+<article class="prose relative max-w-none lg:prose-xl -mt-1">
+  {% if post
+    .episode
+    .toString() %}
+    <span class="block absolute top-1 right-0 px-2 py-1 bg-gray-400 rounded-md text-white text-sm">{{ "#" + post.episode.toString().padStart(4, '0') }}</span>
+  {% endif %}
+  <header>
+    {% if is_post()or is_home_first_page() %}
+      <h1 class="mb-1 pr-16">{{ post.title }}</h1>
+      <div class="lg:-mt-10">
+        <span class="block text-xs text-gray-500 lg:text-lg">Publised on {{ time_tag(post.date) }}</span>
+      </div>
+    {% else %}
+      <h1>
+        <a href="{{ url_for(post.path) }}" class="mb-1">{{ post.title }}</a>
+      </h1>
+    {% endif %}
+  </header>
+  {% if post.libsynId %}
+    <iframe style="border: none" class="mt-5" src="//html5-player.libsyn.com/embed/destination/id/{{ post.libsynId }}/height/360/theme/custom/autoplay/no/autonext/no/thumbnail/yes/preload/no/no_addthis/no/direction/backward/no-cache/true/render-playlist/no/custom-color/141414/" height="90" width="100%" scrolling="no" allowfullscreenwebkitallowfullscreen mozallowfullscreen gallowfullscreen msallowfullscreen></iframe>
+  {% endif %}
+  <div class="-mt-6">
+    {{ post.content }}
+  </div>
+  <div class="mt-4 text-right text-xs text-gray-500">
+    <a href="{{ url_for(post.path) }}" class="mb-1 text-gray-500">Permalink</a>
+  </div>
+</article>
