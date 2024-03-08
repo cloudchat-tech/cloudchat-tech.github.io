@@ -35,7 +35,3 @@ The hosts conclude the episode by inviting listeners to reach out to them via
 email or Twitter with any feedback or suggestions. They express their excitement
 about the podcast and look forward to engaging with their listeners in future
 episodes.
-
-## Show Notes
-
-- [Link to something](https://example.com)
