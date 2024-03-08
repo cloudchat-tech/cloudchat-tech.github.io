@@ -4,11 +4,12 @@
             <h2 class="text-xl font-bold">Subscribe and Socials</h2>
         </div>
         <ul class="px-4">
-
-            <li><a href="" class="font-bold hover:underline">iTunes</a></li>
-            <li><a href="" class="font-bold hover:underline">RSS</a></li>
-            <li><a href="http://discord.cloudchat.tech/" target="_blank" class="font-bold hover:underline">Discord</a></li>
-            <li><a href="" class="font-bold hover:underline">Twitter</a></li>
+            {% set linkClasses = 'font-bold hover:underline'  %}
+            <li><a href="" class="{{linkClasses}}">iTunes</a></li>
+            <li><a href="http://spotify.cloudchat.tech/" class="{{linkClasses}}">iTunes</a></li>
+            <li><a href="" class="{{linkClasses}}">RSS</a></li>
+            <li><a href="http://discord.cloudchat.tech/" target="_blank" class="{{linkClasses}}">Discord</a></li>
+            <li><a href="http://twitter.cloudchat.tech/" class="{{linkClasses}}">Twitter</a></li>
         </ul>
     </div>
     <div class="mb-4">
