@@ -1,7 +1,8 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8">
   <title>
-    {% if page.title %}{{ page.title }} | {% endif %}{{ config.title }}</title>
+    {% if page.title %}{{ page.title }} | {% endif %}{{ config.title }}
+  </title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -11,8 +12,19 @@
   <meta name="theme-color" content="#002145" media="(prefers-color-scheme: dark)">
   {# <meta name="keywords" content="{{ (page.tags | join(',')) if page.tags }}"> #}
   <link rel="canonical" href="{{ url }}">
-  {{ feed_tag('https://feeds.libsyn.com/515573/rss') }}
+  {{ feed_tag('http://feed.cloudchat.tech/', { title: 'RSS Feed', type: 'rss' }) }}
 
+  {# Open Graph #}
+  <meta property="og:title" content="{{ page.title + ' | ' + config.title if page.title else config.title }}"/>
+  <meta property="og:type" content="{{ 'article' if page.title else 'website' }}"/>
+  <meta property="og:image" content="{{ url_for('/images/opengraph-twitter.png') }}"/>
+  <meta property="og:image" content="{{ url_for('/images/opengraph-facebook.png') }}"/>
+  <meta property="og:image" content="{{ url_for('/images/opengraph-linkedin.png') }}"/>
+  <meta property="og:image" content="{{ url_for('/images/opengraph-pinterest.png') }}"/>
+  <meta property="og:description" content="{{ page.summary if page.summary else config.description }}"/>
+  <meta property="og:url" content="{{ url }}"/>
+
+  {# Favicons #}
   <link rel="apple-touch-icon" sizes="57x57" href="{{ url_for('icons/cloudchat-apple-touch-icon-152.png') }}">
   <link rel="apple-touch-icon" sizes="114x114" href="{{ url_for('icons/cloudchat-apple-touch-icon-152.png') }}">
   <link rel="apple-touch-icon" sizes="120x120" href="{{ url_for('icons/cloudchat-apple-touch-icon-152.png') }}">

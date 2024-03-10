@@ -2,6 +2,11 @@
 episode: 0000
 date: 2024-03-08
 libsynId: 30285583
+summary:
+  In the inaugural episode of CloudChat, hosts Carl and Brandon introduce
+  themselves and discuss their backgrounds, aiming to provide insights into
+  building and maintaining cloud solutions, covering topics such as engineering,
+  architecture, and operations.
 ---
 
 # Hello World!
