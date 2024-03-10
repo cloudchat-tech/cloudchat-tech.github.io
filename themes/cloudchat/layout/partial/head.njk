@@ -1,13 +1,15 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8">
-  <title>
-    {% if page.title %}{{ page.title }} | {% endif %}{{ config.title }}
-  </title>
+  {% set title = page.title + ' | ' + config.title if page.title else
+    config.title %}
+  {% set description = page.summary if page.summary else
+    config.description %}
+  <title>{{ title }}</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="author" content="{{ config.author }}">
-  <meta name="description" content="{{ config.description }}">
+  <meta name="description" content="{{ description }}">
   <meta name="theme-color" content="#002145" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#002145" media="(prefers-color-scheme: dark)">
   {# <meta name="keywords" content="{{ (page.tags | join(',')) if page.tags }}"> #}
@@ -15,14 +17,20 @@
   {{ feed_tag('http://feed.cloudchat.tech/', { title: 'RSS Feed', type: 'rss' }) }}
 
   {# Open Graph #}
-  <meta property="og:title" content="{{ page.title + ' | ' + config.title if page.title else config.title }}"/>
+  <meta property="og:title" content="{{ title }}"/>
   <meta property="og:type" content="{{ 'article' if page.title else 'website' }}"/>
-  <meta property="og:image" content="{{ url_for('/images/opengraph-twitter.png') }}"/>
   <meta property="og:image" content="{{ url_for('/images/opengraph-facebook.png') }}"/>
+  <meta property="og:image" content="{{ url_for('/images/opengraph-twitter.png') }}"/>
   <meta property="og:image" content="{{ url_for('/images/opengraph-linkedin.png') }}"/>
   <meta property="og:image" content="{{ url_for('/images/opengraph-pinterest.png') }}"/>
-  <meta property="og:description" content="{{ page.summary if page.summary else config.description }}"/>
+  <meta property="og:description" content="{{ description }}"/>
   <meta property="og:url" content="{{ url }}"/>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:domain" content="@CloudChatTech">
+  <meta property="twitter:url" content="{{ url }}">
+  <meta name="twitter:title" content="{{ title }}">
+  <meta name="twitter:description" content="{{ description }}">
+  <meta name="twitter:image" content="https://cloudchat.tech/images/opengraph-twitter.png">
 
   {# Favicons #}
   <link rel="apple-touch-icon" sizes="57x57" href="{{ url_for('icons/cloudchat-apple-touch-icon-152.png') }}">
