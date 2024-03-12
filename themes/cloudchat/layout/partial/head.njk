@@ -1,4 +1,5 @@
 <head prefix="og: http://ogp.me/ns#">
+  {{ partial('googleanalytics') }}
   <meta charset="utf-8">
   {% set title = page.title + ' | ' + config.title if page.title else
     config.title %}

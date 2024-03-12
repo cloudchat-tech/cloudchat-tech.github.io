@@ -107,3 +107,5 @@ browsersync:
   logLevel: "warn"
   ghostMode:
     scroll: true
+
+googleAnalytics: G-91JP8BLSWY
