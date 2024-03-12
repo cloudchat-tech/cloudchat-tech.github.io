@@ -54,7 +54,7 @@ tag_map:
 
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
-meta_generator: true
+meta_generator: false
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
@@ -76,7 +76,7 @@ marked:
   breaks: false
   smartLists: true
   smartypants: true
-  quotes: '“”‘’'
+  quotes: "“”‘’"
   modifyAnchors: 1
   anchorAlias: false
   autolink: true
@@ -97,6 +97,20 @@ marked:
 
 # Extensions
 theme: cloudchat
+theme_config:
+  socials:
+    - name: itunes
+      url: http://itunes.cloudchat.tech/
+    - name: spotify
+      url: http://spotify.cloudchat.tech/
+    - name: feed
+      url: http://feed.cloudchat.tech/
+    - name: discord
+      url: http://discord.cloudchat.tech/
+    - name: twitter
+      url: http://twitter.cloudchat.tech/
+  podcastFeedUrl: http://feed.cloudchat.tech/
+  googleAnalyticsId: G-91JP8BLSWY
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -107,5 +121,3 @@ browsersync:
   logLevel: "warn"
   ghostMode:
     scroll: true
-
-googleAnalytics: G-91JP8BLSWY

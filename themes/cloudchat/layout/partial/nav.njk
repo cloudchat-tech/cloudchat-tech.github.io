@@ -4,11 +4,11 @@
             <h2 class="text-xl font-bold">Subscribe and Socials</h2>
         </div>
         <ul class="px-4 flex flex-row justify-left gap-4">
-            {% set socials = ['itunes', 'spotify', 'feed', 'discord', 'twitter'] %}
+            {% set socials = config.theme_config.socials %}
             {% for social in socials %}
                 <li class="block w-20 hover:animate-heartbeat">
-                    <a href="http://{{social}}.cloudchat.tech/" target="_blank">
-                        <img src="{{url_for('/icons/social-' + social + '.svg')}}"/>
+                    <a href="{{social.url}}" target="_blank">
+                        <img src="{{url_for('/icons/social-' + social.name + '.svg')}}"/>
                     </a>
                 </li>
             {% endfor %}

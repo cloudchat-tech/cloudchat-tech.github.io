@@ -15,7 +15,7 @@
   <meta name="theme-color" content="#002145" media="(prefers-color-scheme: dark)">
   {# <meta name="keywords" content="{{ (page.tags | join(',')) if page.tags }}"> #}
   <link rel="canonical" href="{{ url }}">
-  {{ feed_tag('http://feed.cloudchat.tech/', { title: 'RSS Feed', type: 'rss' }) }}
+  {{ feed_tag(config.theme_config.podcastFeedUrl, { title: 'RSS Feed', type: 'rss' }) }}
 
   {# Open Graph #}
   <meta property="og:title" content="{{ title }}"/>
