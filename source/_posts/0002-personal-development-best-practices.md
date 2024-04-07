@@ -3,6 +3,11 @@ episode: 0002
 date: 2024-04-08
 libsynId: LIBSYN_ID
 summary:
+  Carl shares his journey of transitioning a 20-year-old hobby project into a
+  robust app, highlighting the importance of modern software development
+  practices. The hosts discuss version control, formatting, and the concept of
+  cloud readiness, emphasizing their relevance in both professional and personal
+  cloud-based development.
 ---
 
 # Personal Development Best Practices
