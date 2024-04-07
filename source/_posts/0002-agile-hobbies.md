@@ -10,7 +10,7 @@ summary:
   cloud-based development.
 ---
 
-# Personal Development Best Practices
+# Agile Hobbies
 
 ## Summary
 
@@ -39,5 +39,5 @@ personal projects.
 
 ## Links
 
-- [one](https://example.com)
-- [two](https://example.com)
+- [Using GitHub Issues](https://github.com/features/issues)
+- [Developing Inside a DevContainer](https://code.visualstudio.com/docs/devcontainers/containers)
