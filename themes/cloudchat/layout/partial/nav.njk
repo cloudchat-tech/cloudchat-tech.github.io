@@ -21,7 +21,7 @@
         <ul class="px-4">
             {% set posts = site.posts.sort('-date') %}
             {% for post in posts
-                .slice('0', '4')
+                .slice('0', '9')
                 .toArray() %}
                 <li>
                     {% set episodeNumber = post.episode.toString().padStart(4, '0') %}
