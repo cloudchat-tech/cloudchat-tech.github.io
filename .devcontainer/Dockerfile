@@ -1,5 +1,7 @@
 FROM mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye
 
+RUN npm install -g hexo-cli
+
 # Setup Aliases
 RUN echo "alias serve=\"npm run server\"" >> /etc/bash.bashrc && \
     echo "alias build=\"npm run build\"" >> /etc/bash.bashrc && \
