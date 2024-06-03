@@ -1,6 +1,6 @@
 ---
 episode: 0006
-date: 2024-06-02
+date: 2024-06-03
 libsynId: 31573912
 summary:
   Carl and Brandon discuss the many layers of tenancy within a cloud solution.
