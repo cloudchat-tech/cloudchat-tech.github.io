@@ -1,9 +1,11 @@
 "use strict";
 
+const { data } = require("autoprefixer");
+
 const toTitleCase = require("titlecase").toLaxTitleCase;
 
 const properCloudChatNaming = (content) => {
-  const cloudChatRegex = /Cloud ?Chat/ig;
+  const cloudChatRegex = /Cloud ?Chat/gi;
   return content.replace(cloudChatRegex, "CloudChat");
 };
 
@@ -27,6 +29,15 @@ const extractTitle = (data) => {
   return data;
 };
 
+const createGuestAvatarFileName = (data) => {
+  if (data.guest && data.guest.name) {
+    const formattedName = data.guest.name.replace(/ /g, "-").toLowerCase();
+    data.guest.avatar = `avatar-${formattedName}.jpg`
+  }
+
+  return data;
+};
+
 const titleCaseTitle = (data) => {
   data.title = properCloudChatNaming(toTitleCase(data.title));
   data.content = properCloudChatNaming(data.content);
@@ -35,5 +46,5 @@ const titleCaseTitle = (data) => {
 };
 
 hexo.extend.filter.register("before_post_render", (data) => {
-  return titleCaseTitle(extractTitle(data));
+  return createGuestAvatarFileName(titleCaseTitle(extractTitle(data)));
 });

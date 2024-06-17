@@ -1,0 +1,31 @@
+<div class="max-w bg-white rounded-md shadow not-prose mt-6">
+  <div class="bg-gray-800 text-white px-4 py-2 mb-2 rounded-t-md">
+    <h2 class="text-xl font-bold text-center">Episode Guest: {{post.guest.name}}</h2>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-4 md:gap-3">
+    <div>
+      {{ image_tag('images/guests/' + post.guest.avatar, { alt: post.guest.name, title: post.guest.name, class: 'rounded-full mb-2 shadow m-2 w-11/12 mx-auto block' }) }}
+    </div>
+    <div class="md:col-span-3">
+      <div class="px-5">
+        <p class="mb-3 text-md md:text-sm text-gray-700">{{post.guest.bio}}</p>
+        <ul class="pr-2 mb-3 flex flex-row justify-left gap-4">
+          {% if post.guest.socials.twitter %}
+            <li class="block w-10 md:w-5 hover:animate-heartbeat">
+              <a href="{{'https://twitter.com/' + post.guest.socials.twitter}}" target="_blank">
+                <img src="{{url_for('/icons/social-twitter.svg')}}"/>
+              </a>
+            </li>
+          {% endif %}
+          {% if post.guest.socials.linkedin %}
+            <li class="block w-10 md:w-5 hover:animate-heartbeat">
+              <a href="{{'https://www.linkedin.com/in/' + post.guest.socials.linkedin}}" target="_blank">
+                <img src="{{url_for('/icons/social-linkedin.svg')}}"/>
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

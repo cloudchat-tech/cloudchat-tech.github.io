@@ -19,6 +19,9 @@
   {% if post.libsynId %}
     <iframe title="CloudChat.tech Episode Player" class="border-none mt-4 rounded-md" src="//html5-player.libsyn.com/embed/episode/id/{{ post.libsynId }}/height/90/theme/custom/thumbnail/yes/direction/backward/render-playlist/no/custom-color/1f2937/" height="90" width="100%" scrolling="no"  allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
   {% endif %}
+  {% if post.guest %}
+    {{ partial('partial/post-guest') }}
+  {% endif %}
   <div class="-mt-6">
     {{ post.content }}
   </div>
