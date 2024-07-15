@@ -1,7 +1,7 @@
 ---
 episode: 0009
 date: 2024-07-15
-libsynId: LIBSYN_ID
+libsynId: 32135337
 summary:
   Explore the world of Cloud Tooling across different platforms, delve into the
   spectrum of GUIs and CLIs, understand the trend of living in the terminal, and
@@ -11,8 +11,6 @@ summary:
 # Knowing Your (Cloud) Tools
 
 ## Summary
-
-**Episode Summary**
 
 In this episode, we delve into the world of "Cloud Tooling". We explore how
 different cloud platforms take similar approaches to tooling, with a variety of
@@ -29,7 +27,7 @@ The episode also touches on the increasing popularity of the shell among coders
 and streamers, and the importance of achieving consistent experiences with
 different shells.
 
-**Links**
+## Links
 
 - [Azure Developer CLI Overview](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/overview)
 - [AWS CLI](https://aws.amazon.com/cli/)
@@ -39,5 +37,9 @@ different shells.
 - [GCP Cloud API Overview](https://cloud.google.com/apis/docs/overview)
 - [API Design](https://cloud.google.com/apis/design)
 - [GCP SDKs - Client Libraries](https://cloud.google.com/apis/docs/client-libraries-explained)
-- [Oh My Posh](https://ohmyposh.dev/)
+- Shell Customizations
+  - [Oh My Posh](https://ohmyposh.dev/)
+  - [Brandon's Oh My Posh Configuration](https://gist.github.com/brandonmartinez/0f228b6765ccd3bbf9968b6b69903891)
+  - [zinit](https://github.com/zdharma-continuum/zinit)
+  - [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
 - [How Terminals Work](https://poor.dev/blog/terminal-anatomy/)
