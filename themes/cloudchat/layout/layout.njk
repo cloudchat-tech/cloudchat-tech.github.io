@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang }}">
   {{ partial('partial/head') }}
-  <body>
-    <body class="bg-gray-200 font-sans leading-normal tracking-normal">
-      {{ partial('partial/header') }}
+  <body class="bg-gray-200 font-sans leading-normal tracking-normal">
+    {{ partial('partial/header') }}
+    {{ partial('partial/nav') }}
 
-      <div class="container max-w-4xl mx-auto px-6 xl:px-0 grid grid-cols-1 md:grid-cols-5 md:gap-3">
-        <div class="mb-4 md:col-span-3">
-          {{ body }}
-        </div>
-
-        {{ partial('partial/nav') }}
+    <div class="container max-w-4xl mx-auto px-6 xl:px-0 grid grid-cols-1 md:grid-cols-5 md:gap-3">
+      <div class="mb-4 md:col-span-3">
+        {{ body }}
       </div>
 
-      {{ partial('partial/footer') }}
-    </body>
-  </html>
+      {{ partial('partial/sidebar') }}
+    </div>
+
+    {{ partial('partial/footer') }}
+  </body>
+</html>

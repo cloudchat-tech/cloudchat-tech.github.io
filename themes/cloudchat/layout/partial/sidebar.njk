@@ -1,0 +1,37 @@
+<nav class="col-span-1 md:col-span-2 mb-4">
+    <div class="mb-4">
+        <div class="bg-gray-800 text-white px-4 py-2 mb-2 rounded-md">
+            <h2 class="text-xl font-bold">Subscribe and Socials</h2>
+        </div>
+        <ul class="px-4 flex flex-row justify-left gap-4">
+            {% set socials = config.theme_config.socials %}
+            {% for social in socials %}
+                <li class="block w-20 hover:animate-heartbeat">
+                    <a href="{{social.url}}" target="_blank">
+                        <img src="{{url_for('/icons/social-' + social.name + '.svg')}}"/>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="mb-4">
+        <div class="bg-gray-800 text-white px-4 py-2 mb-2 rounded-md">
+            <h2 class="text-xl font-bold">Latest Episodes</h2>
+        </div>
+        <ul class="px-4">
+            {% set posts = site.posts.sort('-date') %}
+            {% for post in posts
+                .slice('0', '9')
+                .toArray() %}
+                <li>
+                    {% set episodeNumber = post.episode.toString().padStart(4, '0') %}
+                    <a href="{{ url_for(post.path) }}" class="font-bold hover:underline" title="{{ "#" + episodeNumber + ": " if post.episode.toString()}}{{ post.title }} ({{ date(post.date, 'YYYY-MM-DD') }})">
+                        {{ "#" + episodeNumber + ": " if post.episode.toString()}}{{ post.title }}
+                    </a>
+                </li>
+            {% else %}
+                <li>Episodes coming soon!</li>
+            {% endfor %}
+        </ul>
+    </div>
+</nav>
