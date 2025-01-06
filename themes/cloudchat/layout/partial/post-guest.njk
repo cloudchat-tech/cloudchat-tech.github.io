@@ -1,19 +1,19 @@
-<div class="max-w bg-white rounded-md shadow not-prose mt-6">
-  <div class="bg-gray-800 text-white px-4 py-2 mb-2 rounded-t-md">
+<div class="max-w bg-white rounded-md shadow mt-6">
+  <div class="bg-gray-800 text-white px-4 py-2 mb-2 rounded-t-md not-prose">
     <h2 class="text-xl font-bold text-center">Episode Guest: {{post.guest.name}}</h2>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-4 md:gap-3">
-    <div>
-      {{ image_tag('images/guests/' + post.guest.avatar, { alt: post.guest.name, title: post.guest.name, class: 'rounded-full mb-2 shadow m-2 w-11/12 mx-auto block' }) }}
+    <div class="not-prose">
+      {{ image_tag('images/guests/' + post.guest.avatar, { alt: post.guest.name, title: post.guest.name, class: 'rounded-full mt-5 mb-2 md:ml-5 shadow w-10/12 mx-auto block' }) }}
     </div>
     <div class="md:col-span-3">
       <div class="px-5">
-        <p class="mb-3 text-md md:text-sm text-gray-700">{{post.guest.bio}}</p>
-        <ul class="pr-2 mb-3 flex flex-row justify-left gap-4">
-          {% if post.guest.socials.twitter %}
+        <div class="mb-3 text-md md:text-sm text-gray-700">{{markdown(post.guest.bio)}}</div>
+        <ul class="pr-2 mb-3 flex flex-row justify-left gap-4 not-prose">
+          {% if post.guest.socials.bluesky %}
             <li class="block w-10 md:w-5 hover:animate-heartbeat">
-              <a href="{{'https://twitter.com/' + post.guest.socials.twitter}}" target="_blank">
-                <img src="{{url_for('/icons/social-twitter.svg')}}"/>
+              <a href="{{'https://bsky.app/profile/' + post.guest.socials.bluesky}}" target="_blank">
+                <img src="{{url_for('/icons/social-bluesky.svg')}}"/>
               </a>
             </li>
           {% endif %}
@@ -21,6 +21,20 @@
             <li class="block w-10 md:w-5 hover:animate-heartbeat">
               <a href="{{'https://www.linkedin.com/in/' + post.guest.socials.linkedin}}" target="_blank">
                 <img src="{{url_for('/icons/social-linkedin.svg')}}"/>
+              </a>
+            </li>
+          {% endif %}
+          {% if post.guest.socials.twitter %}
+            <li class="block w-10 md:w-5 hover:animate-heartbeat">
+              <a href="{{'https://twitter.com/' + post.guest.socials.twitter}}" target="_blank">
+                <img src="{{url_for('/icons/social-twitter.svg')}}"/>
+              </a>
+            </li>
+          {% endif %}
+          {% if post.guest.socials.web %}
+            <li class="block w-10 md:w-5 hover:animate-heartbeat">
+              <a href="{{post.guest.socials.web}}" target="_blank">
+                <img src="{{url_for('/icons/social-web.svg')}}"/>
               </a>
             </li>
           {% endif %}
