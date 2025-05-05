@@ -3,11 +3,10 @@ episode: 0021
 date: 2025-05-05
 libsynId: 36434250
 summary:
-  In this episode of CloudChat, Carl and Brandon explore the "9 Circles of
-  Dependency Hell," breaking down the most common pitfalls developers face when
-  managing dependencies in cloud environments — and how to escape them. From
-  version conflicts to licensing issues, it’s a survival guide for modern cloud
-  teams.
+  Carl and Brandon explore the "9 Circles of Dependency Hell," breaking down the
+  most common pitfalls developers face when managing dependencies in cloud
+  environments — and how to escape them. From version conflicts to licensing
+  issues, it’s a survival guide for modern cloud teams.
 ---
 
 # The 9 Circles of Dependency Hell 🔥
