@@ -8,7 +8,7 @@ summary:
   when capacity runs tight across Azure, AWS, and Google Cloud.
 ---
 
-# Whoops, No VMs!!!
+# Whoops, No VM's!!!
 
 ## Summary
 
