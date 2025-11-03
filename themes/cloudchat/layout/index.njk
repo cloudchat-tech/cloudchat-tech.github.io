@@ -1,24 +1,28 @@
 {% for post in page
     .posts
-    .toArray() %}
+    .toArray()
+    .slice(0, 4) %}
 
     {% if loop.index == 1 %}
         {{ partial('partial/post', {post: post}) }}
     {% else %}
         {% if loop.index == 2 %}
-            <hr class="border-solid border-gray-500 my-5 block"/>
-            <h2 class="text-xl font-bold">Recent Episodes</h2>
+            <hr class="border-solid border-gray-500 my-8 block"/>
+            <h2 class="text-2xl font-bold mb-6">Recent Episodes</h2>
         {% endif %}
-        <div class="prose">
-            <article class="article post archive-post" itemscope itemtype="http://schema.org/Article">
-                <a class="archive-post-link" href="{{ url_for(post.path) }}">
-                    <strong class="archive-post-title" itemprop="name">{{ post.title }}</strong>
-                    (<span class="text-sm">{{ time_tag(post.date) }}</span>)
-                </a>: {{ post.summary}}
-            </article>
+        <div class="prose mb-3 pb-3 border-b-2 border-gray-300">
+            {{ partial('partial/episode-list-item', {post: post}) }}
         </div>
     {% endif %}
 
 {% endfor %}
+
+<div class="prose mt-6 mb-8">
+    <p class="text-center">
+        <a href="{{ url_for('/episodes/') }}" class="inline-block px-6 py-3 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors no-underline font-medium">
+            View All Episodes →
+        </a>
+    </p>
+</div>
 
 {{ page.content }}

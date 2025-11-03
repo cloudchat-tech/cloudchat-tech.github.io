@@ -8,13 +8,8 @@
     .posts
     .toArray() %}
 
-    <div class="prose mb-5">
-        <article class="article post archive-post" itemscope itemtype="http://schema.org/Article">
-            <a class="archive-post-link" href="{{ url_for(post.path) }}">
-                <strong class="archive-post-title" itemprop="name">{{ post.title }}</strong>
-                    (<span class="text-sm">{{ time_tag(post.date) }}</span>)
-                </a>: {{ post.summary}}
-        </article>
+    <div class="prose mb-3 pb-3 border-b-2 border-gray-300 last:border-b-0">
+        {{ partial('partial/episode-list-item', {post: post}) }}
     </div>
 {% endfor %}
 

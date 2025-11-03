@@ -1,0 +1,10 @@
+<article class="article post archive-post" itemscope itemtype="http://schema.org/Article">
+    <div class="grid grid-cols-[1fr_auto] gap-x-3 items-start">
+        <a class="archive-post-link no-underline hover:underline" href="{{ url_for(post.path) }}">
+            <strong class="archive-post-title text-lg" itemprop="name">{{ post.title }}</strong>
+        </a>
+        <span class="px-2 py-1 bg-gray-400 rounded-md text-white text-sm whitespace-nowrap">{{ "#" + post.episode.toString().padStart(4, '0') }}</span>
+    </div>
+    <span class="text-xs text-gray-500 block mt-1">Published on {{ time_tag(post.date) }}</span>
+    <p class="mt-2 mb-0 text-gray-700">{{ post.summary}}</p>
+</article>
