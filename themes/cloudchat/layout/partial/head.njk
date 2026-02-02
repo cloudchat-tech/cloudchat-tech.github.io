@@ -5,6 +5,10 @@
     config.title %}
   {% set description = page.summary if page.summary else
     config.description %}
+  {% set og_image = page.og_image if page.og_image else
+    '/images/opengraph-facebook.png' %}
+  {% set twitter_image = page.twitter_image if page.twitter_image else
+    '/images/opengraph-twitter.png' %}
   <title>{{ title }}</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +24,7 @@
   {# Open Graph #}
   <meta property="og:title" content="{{ title }}"/>
   <meta property="og:type" content="{{ 'article' if page.title else 'website' }}"/>
-  <meta property="og:image" content="{{ url_for('/images/opengraph-facebook.png') }}"/>
+  <meta property="og:image" content="{{ full_url_for(og_image) }}"/>
   <meta property="og:description" content="{{ description }}"/>
   <meta property="og:url" content="{{ url }}"/>
   <meta name="twitter:card" content="summary_large_image">
@@ -28,7 +32,7 @@
   <meta property="twitter:url" content="{{ url }}">
   <meta name="twitter:title" content="{{ title }}">
   <meta name="twitter:description" content="{{ description }}">
-  <meta name="twitter:image" content="https://cloudchat.tech/images/opengraph-twitter.png">
+  <meta name="twitter:image" content="{{ full_url_for(twitter_image) }}">
 
   {# Favicons #}
   <link rel="apple-touch-icon" sizes="57x57" href="{{ url_for('icons/cloudchat-apple-touch-icon-152.png') }}">
