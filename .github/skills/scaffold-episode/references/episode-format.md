@@ -52,18 +52,18 @@ guest:
 
 ### Field details
 
-| Field | Type | Required | Notes |
-|-------|------|----------|-------|
-| `episode` | String | Yes | Zero-padded 4-digit number. Displayed as `#0031` in the UI. |
-| `date` | Date | Yes | `YYYY-MM-DD` format. Determines URL path (`/2026/03/slug/`). |
-| `libsynId` | Number or String | Yes | Numeric Libsyn episode ID. Use `LIBSYN_ID` as placeholder. |
-| `summary` | String | Yes | 1-3 sentences for `<meta>` description and episode list. YAML block scalar for multi-line. |
-| `guest.name` | String | No | Full name. Used to auto-generate avatar filename. |
-| `guest.bio` | String | No | Markdown-compatible. Use YAML literal block scalar (`\|`). |
-| `guest.socials.bluesky` | String | No | Bluesky handle (e.g., `handle.bsky.social`). |
-| `guest.socials.linkedin` | String | No | LinkedIn profile slug. |
-| `guest.socials.twitter` | String | No | Twitter/X handle (no `@`). |
-| `guest.socials.web` | String | No | Full URL including `https://`. |
+| Field                    | Type             | Required | Notes                                                                                      |
+| ------------------------ | ---------------- | -------- | ------------------------------------------------------------------------------------------ |
+| `episode`                | String           | Yes      | Zero-padded 4-digit number. Displayed as `#0031` in the UI.                                |
+| `date`                   | Date             | Yes      | `YYYY-MM-DD` format. Determines URL path (`/2026/03/slug/`).                               |
+| `libsynId`               | Number or String | Yes      | Numeric Libsyn episode ID. Use `LIBSYN_ID` as placeholder.                                 |
+| `summary`                | String           | Yes      | 1-3 sentences for `<meta>` description and episode list. YAML block scalar for multi-line. |
+| `guest.name`             | String           | No       | Full name. Used to auto-generate avatar filename.                                          |
+| `guest.bio`              | String           | No       | Markdown-compatible. Use YAML literal block scalar (`\|`).                                 |
+| `guest.socials.bluesky`  | String           | No       | Bluesky handle (e.g., `handle.bsky.social`).                                               |
+| `guest.socials.linkedin` | String           | No       | LinkedIn profile slug.                                                                     |
+| `guest.socials.twitter`  | String           | No       | Twitter/X handle (no `@`).                                                                 |
+| `guest.socials.web`      | String           | No       | Full URL including `https://`.                                                             |
 
 ## Markdown Body Structure
 
@@ -90,7 +90,8 @@ paragraphs.
 
 ### Rules
 
-- The `# H1` heading is the episode title. `before_post_render.js` extracts it, applies title case, and normalizes "Cloud Chat" → "CloudChat."
+- The `# H1` heading is the episode title. `before_post_render.js` extracts it,
+  applies title case, and normalizes "Cloud Chat" → "CloudChat."
 - Do NOT put `title` in frontmatter — it is derived from the H1.
 - Links should have descriptive text (not bare URLs).
 - Group links by topic section when there are more than ~5 links.
@@ -106,7 +107,8 @@ source/_posts/0031-cloud-networking/
 └── any-other-image.png              (optional, use {% asset_img %} to embed)
 ```
 
-`before_post_render.js` auto-detects `opengraph-episode-facebook.png` and `opengraph-episode-twitter.png` and sets OG/Twitter meta tags automatically.
+`before_post_render.js` auto-detects `opengraph-episode-facebook.png` and
+`opengraph-episode-twitter.png` and sets OG/Twitter meta tags automatically.
 
 ## Guest Avatar
 
