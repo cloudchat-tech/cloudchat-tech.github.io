@@ -1,18 +1,19 @@
 ---
 name: generate-episode-graphic
 description:
-  "Generate a CloudChat episode background graphic for social media OG images.
-  Use when: creating episode art, generating OG images, making social images,
-  episode graphic, podcast artwork background."
+  "Generate a CloudChat episode image prompt file for social media OG images.
+  Use when: creating episode art prompts, generating OG-image prompts, making
+  social image prompts, episode graphic prompts, podcast artwork prompts."
 argument-hint:
   "Episode number or file path (e.g., 0031 or
   source/_posts/0031-cloud-networking.md)"
 ---
 
-# Generate Episode Background Graphic
+# Generate Episode Graphic Prompt
 
-Create a thematic background image for a CloudChat podcast episode, designed for
-use as OG/social media images with manual text and avatar overlays.
+Create a thematic image-generation prompt for a CloudChat podcast episode,
+designed to be pasted into ChatGPT or another image model to produce a
+background image for OG/social media use.
 
 ## When to Use
 
@@ -38,10 +39,12 @@ If the user provides only an episode number, find the matching file in
 2. Identify the episode title (H1 heading) and summary content.
 3. Determine 1-3 key concepts, metaphors, or concrete nouns from the content.
 
-### Step 2: Generate the background image
+### Step 2: Generate the prompt text file
 
-Use image generation to create the background. Follow these instructions
-precisely:
+Write a prompt file to `tmp/NNNN-image-prompt.txt`. The file should contain a
+single polished prompt, ready to paste into ChatGPT image generation.
+
+Follow these instructions precisely when composing the prompt:
 
 ---
 
@@ -103,9 +106,10 @@ avatars) without becoming noisy.
 
 ### Step 3: Guide the user on post-processing
 
-After generating the image, tell the user:
+After writing the prompt file, tell the user:
 
-1. **Save the full-resolution source image** (2400×1350 or 1920×1080).
+1. Use the prompt in ChatGPT image generation (or a similar model) and save the
+   full-resolution source image (2400×1350 or 1920×1080).
 2. **Export two versions** for the post asset folder:
    - `opengraph-episode-facebook.png` — 1200×630 (center-crop from the 16:9
      source)
@@ -124,6 +128,8 @@ After generating the image, tell the user:
 
 ## Important Rules
 
+- **Never generate the final image directly in the skill** — the skill's output
+  is the prompt text file in `tmp/`.
 - **Never include text in the generated image** — all text is added manually for
   precise typography.
 - **Never include the CloudChat logo** — it is overlaid manually.
@@ -133,3 +139,4 @@ After generating the image, tell the user:
   topic mentioned.
 - **Brand colors anchor the palette** — `#002145` (dark blue) and `#1f2937`
   (gray-800) should be present, with episode-specific accents.
+
