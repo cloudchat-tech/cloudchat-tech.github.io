@@ -12,6 +12,7 @@
     "version": "8.1.1"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.2.2",
     "autoprefixer": "^10.4.27",
     "hexo": "^8.1.1",
     "hexo-browsersync": "^0.3.0",

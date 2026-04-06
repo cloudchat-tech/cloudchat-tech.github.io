@@ -6,7 +6,7 @@ var postcssrc = require("postcss-load-config");
 function renderer(data) {
   return postcssrc()
     .then(({ plugins, options }) =>
-      postcss(plugins).process(data.text, options)
+      postcss(plugins).process(data.text, { ...options, from: data.path })
     )
     .then((result) => result.css);
 }
