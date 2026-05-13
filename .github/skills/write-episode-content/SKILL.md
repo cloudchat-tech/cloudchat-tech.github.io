@@ -1,7 +1,7 @@
 ---
 name: write-episode-content
 description:
-  "Write CloudChat episode summary and links from a VTT transcript and show
+  "Write CloudChat episode summary and links from a transcript and show
   notes. Use when: generating episode content, writing show notes, processing a
   transcript, filling in episode summary and links from a Teams recording."
 argument-hint:
@@ -13,12 +13,13 @@ argument-hint:
 # Write Episode Content from Transcript
 
 Generate the episode summary, links section, and frontmatter summary by reading
-a Microsoft Teams VTT transcript and optional pre-recording show notes.
+a Microsoft Teams transcript (VTT or unstructured text) and optional
+pre-recording show notes.
 
 ## When to Use
 
 - After scaffolding an episode with `/scaffold-episode`
-- The user has placed a VTT transcript in `tmp/` and wants to generate episode
+- The user has placed a transcript in `tmp/` and wants to generate episode
   content
 - The user says "write episode", "generate summary", "process transcript", or
   similar
@@ -28,14 +29,15 @@ a Microsoft Teams VTT transcript and optional pre-recording show notes.
 | Field           | Required | Example                                  | Notes                                                         |
 | --------------- | -------- | ---------------------------------------- | ------------------------------------------------------------- |
 | Episode file    | Yes      | `source/_posts/0031-cloud-networking.md` | The scaffolded episode markdown file.                         |
-| Transcript file | Yes      | `tmp/0031-transcript.vtt`                | VTT file from Microsoft Teams. Located in `tmp/`.             |
+| Transcript file | Yes      | `tmp/0031-transcript.vtt`                | VTT or `.txt` file from Microsoft Teams. Located in `tmp/`.   |
 | Show notes file | No       | `tmp/shownotes.md`                       | Pre-recording outline/notes markdown file. Located in `tmp/`. |
 
 If the user doesn't specify file paths:
 
 - Look in `source/_posts/` for the most recent episode file (highest `NNNN`
   prefix)
-- Look in `tmp/` for `.vtt` files and ask the user to confirm which one
+- Look in `tmp/` for `.vtt` or `.txt` transcript files and ask the user to
+  confirm which one
 - Look in `tmp/` for `.md` files — if one exists, ask the user if it should be
   used as show notes
 
@@ -67,19 +69,30 @@ If the user doesn't specify file paths:
 
 ### Step 2: Read the transcript
 
-1. Read the VTT file from `tmp/`.
-2. Parse the VTT format — strip `WEBVTT` header, timing lines
-   (`00:00:00.000 --> 00:00:05.000`), and positional metadata.
-3. Extract speaker-attributed dialogue. Microsoft Teams VTT uses
-   `<v Speaker Name>text</v>` tags for speaker identification.
-4. Identify speakers:
+1. Read the transcript file from `tmp/`. Two formats are supported:
+   - **VTT** (`.vtt`) — Microsoft Teams WebVTT export.
+   - **Unstructured text** (`.txt`) — Microsoft Teams "copy transcript"
+     export, which is loosely formatted prose with speaker names and
+     human-readable timestamps interleaved.
+2. Parse based on format:
+   - **VTT:** Strip the `WEBVTT` header, timing lines
+     (`00:00:00.000 --> 00:00:05.000`), and positional metadata. Extract
+     speaker-attributed dialogue from `<v Speaker Name>text</v>` tags.
+   - **Text:** Each utterance is preceded by a line with the speaker name
+     and a human-readable timestamp such as `Brandon Martinez 1 hour 18
+     minutes 28 seconds` or a duplicated `Name\n0 minutes 4 seconds0:04`
+     header. Convert the spoken-form timestamps to `HH:MM:SS` (e.g.,
+     `1 hour 18 minutes 28 seconds` → `01:18:28`, `0 minutes 4 seconds`
+     → `00:00:04`). Group consecutive lines from the same speaker into a
+     single utterance.
+3. Identify speakers:
    - **Carl** and **Brandon** are the hosts (Teams may show full names like
      "Carl Schweitzer" or "Brandon Martinez" — treat these as the hosts).
    - Any other speaker is likely a guest — cross-reference with the `guest:`
      block in the episode frontmatter if present.
-   - If speaker names in the VTT don't match expected names, note the mapping
-     and proceed.
-5. Cross-reference the transcript with the show notes (if available) to confirm
+   - If speaker names don't match expected names, note the mapping and
+     proceed.
+4. Cross-reference the transcript with the show notes (if available) to confirm
    which planned topics were actually discussed and which were skipped.
 
 ### Step 3: Extract topics into a JSONL file
@@ -93,7 +106,7 @@ Each line must have these fields:
 | Field       | Type       | Description                                                                                          |
 | ----------- | ---------- | ---------------------------------------------------------------------------------------------------- |
 | `topic`     | string     | Short topic label (3-8 words).                                                                       |
-| `timestamp` | string     | Approximate VTT start time (`HH:MM:SS`) of when the topic begins.                                   |
+| `timestamp` | string     | Approximate transcript start time (`HH:MM:SS`) of when the topic begins.                            |
 | `speakers`  | string[]   | Who contributed to this segment (`"Carl"`, `"Brandon"`, guest name).                                 |
 | `detail`    | string     | 1-2 sentence factual description of what was said — no editorializing.                               |
 | `refs`      | string[]   | Technologies, products, people, or URLs mentioned by name in this segment (empty array if none).     |
@@ -198,4 +211,4 @@ Update the episode markdown file with:
   file). If you can't find a canonical URL for something mentioned, omit it
   rather than guess.
 - **Transcript and show notes stay in `tmp/`** — do not move, copy, or commit
-  the VTT, show notes, or JSONL topic files.
+  the transcript, show notes, or JSONL topic files.
