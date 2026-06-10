@@ -1,8 +1,8 @@
 ---
 name: write-episode-content
 description:
-  "Write CloudChat episode summary and links from a transcript and show
-  notes. Use when: generating episode content, writing show notes, processing a
+  "Write CloudChat episode summary and links from a transcript and show notes.
+  Use when: generating episode content, writing show notes, processing a
   transcript, filling in episode summary and links from a Teams recording."
 argument-hint:
   "Episode file path, transcript, and optional show notes (e.g.,
@@ -71,45 +71,44 @@ If the user doesn't specify file paths:
 
 1. Read the transcript file from `tmp/`. Two formats are supported:
    - **VTT** (`.vtt`) — Microsoft Teams WebVTT export.
-   - **Unstructured text** (`.txt`) — Microsoft Teams "copy transcript"
-     export, which is loosely formatted prose with speaker names and
-     human-readable timestamps interleaved.
+   - **Unstructured text** (`.txt`) — Microsoft Teams "copy transcript" export,
+     which is loosely formatted prose with speaker names and human-readable
+     timestamps interleaved.
 2. Parse based on format:
    - **VTT:** Strip the `WEBVTT` header, timing lines
      (`00:00:00.000 --> 00:00:05.000`), and positional metadata. Extract
      speaker-attributed dialogue from `<v Speaker Name>text</v>` tags.
-   - **Text:** Each utterance is preceded by a line with the speaker name
-     and a human-readable timestamp such as `Brandon Martinez 1 hour 18
-     minutes 28 seconds` or a duplicated `Name\n0 minutes 4 seconds0:04`
-     header. Convert the spoken-form timestamps to `HH:MM:SS` (e.g.,
-     `1 hour 18 minutes 28 seconds` → `01:18:28`, `0 minutes 4 seconds`
-     → `00:00:04`). Group consecutive lines from the same speaker into a
-     single utterance.
+   - **Text:** Each utterance is preceded by a line with the speaker name and a
+     human-readable timestamp such as
+     `Brandon Martinez 1 hour 18 minutes 28 seconds` or a duplicated
+     `Name\n0 minutes 4 seconds0:04` header. Convert the spoken-form timestamps
+     to `HH:MM:SS` (e.g., `1 hour 18 minutes 28 seconds` → `01:18:28`,
+     `0 minutes 4 seconds` → `00:00:04`). Group consecutive lines from the same
+     speaker into a single utterance.
 3. Identify speakers:
    - **Carl** and **Brandon** are the hosts (Teams may show full names like
      "Carl Schweitzer" or "Brandon Martinez" — treat these as the hosts).
    - Any other speaker is likely a guest — cross-reference with the `guest:`
      block in the episode frontmatter if present.
-   - If speaker names don't match expected names, note the mapping and
-     proceed.
+   - If speaker names don't match expected names, note the mapping and proceed.
 4. Cross-reference the transcript with the show notes (if available) to confirm
    which planned topics were actually discussed and which were skipped.
 
 ### Step 3: Extract topics into a JSONL file
 
-Before writing any prose, produce a structured list of every key topic found
-in the transcript (and show notes, if available). Write this to
+Before writing any prose, produce a structured list of every key topic found in
+the transcript (and show notes, if available). Write this to
 `tmp/NNNN-topics.jsonl` — one JSON object per line.
 
 Each line must have these fields:
 
-| Field       | Type       | Description                                                                                          |
-| ----------- | ---------- | ---------------------------------------------------------------------------------------------------- |
-| `topic`     | string     | Short topic label (3-8 words).                                                                       |
-| `timestamp` | string     | Approximate transcript start time (`HH:MM:SS`) of when the topic begins.                            |
-| `speakers`  | string[]   | Who contributed to this segment (`"Carl"`, `"Brandon"`, guest name).                                 |
-| `detail`    | string     | 1-2 sentence factual description of what was said — no editorializing.                               |
-| `refs`      | string[]   | Technologies, products, people, or URLs mentioned by name in this segment (empty array if none).     |
+| Field       | Type     | Description                                                                                      |
+| ----------- | -------- | ------------------------------------------------------------------------------------------------ |
+| `topic`     | string   | Short topic label (3-8 words).                                                                   |
+| `timestamp` | string   | Approximate transcript start time (`HH:MM:SS`) of when the topic begins.                         |
+| `speakers`  | string[] | Who contributed to this segment (`"Carl"`, `"Brandon"`, guest name).                             |
+| `detail`    | string   | 1-2 sentence factual description of what was said — no editorializing.                           |
+| `refs`      | string[] | Technologies, products, people, or URLs mentioned by name in this segment (empty array if none). |
 
 **Rules for topic extraction:**
 
@@ -145,19 +144,28 @@ topic list.
 Write the `## Summary` section following the CloudChat style. See
 [style guide](./references/style-guide.md) for detailed examples.
 
-**The summary must be derived from the confirmed JSONL topic list.** Every
-claim in the summary must trace back to at least one topic line. Do not
-introduce ideas that are not represented in the topic file.
+**The summary must be derived from the confirmed JSONL topic list.** Every claim
+in the summary must trace back to at least one topic line. Do not introduce
+ideas that are not represented in the topic file.
 
 **Style requirements:**
 
 - **Present tense**, conversational recap
 - **2-3 paragraphs**, each covering a distinct theme or segment
-- **Statement-oriented with host attribution** — lead with direct claims
-  about the topic. Attributing ideas to the hosts ("Carl walks through,"
-  "Brandon argues") is encouraged. Avoid only the episode-as-container
-  phrases: "in this episode," "the episode continues," "the conversation
-  opens with," "they close with."
+- **Subject-first opening, then attribution** — open with the topic/problem
+  first, then naturally attribute to the hosts. Preferred pattern: "Cloud
+  networking still breaks when teams assume X, and Carl and Brandon dig into
+  why." Avoid opening the first sentence with host names.
+- **Light attribution cadence** — include host attribution naturally, but avoid
+  repetitive sentence-by-sentence patterns like "Brandon says... Carl says..."
+  Use attribution once early and then when it adds clarity, not as a verbal
+  tick.
+- **Slightly broader summarization** — prioritize grouped themes over
+  fine-grained play-by-play. Combine closely related subtopics into clear
+  thematic arcs while staying faithful to the confirmed topic list.
+- **Statement-oriented prose** — lead with direct claims about the topic. Avoid
+  episode-as-container phrases: "in this episode," "the episode continues," "the
+  conversation opens with," "they close with."
 - **Name the hosts** (Carl and Brandon) and any guests naturally in the text
 - **Cover key topics** discussed — technical concepts, real-world examples,
   opinions, and takeaways
@@ -200,6 +208,33 @@ Update the episode markdown file with:
 3. The new `## Summary` section
 4. The new `## Links` section
 
+### Step 9: Validate links after writing
+
+After Step 8, run a link validation pass against the final episode markdown
+file.
+
+1. Extract all links from the `## Links` section.
+2. Verify each link resolves to real content (follow redirects):
+   - Accept `2xx` and `3xx` responses.
+   - Reject `4xx`/`5xx`, dead redirects, parked domains, and generic block
+     pages (e.g., anti-bot interstitials with no usable content).
+   - If the URL includes a fragment (`#section-id`), validate the fragment
+     target exists in the final page content:
+     - Check for matching anchors/targets (e.g., `id`, `name`, or `href` to the
+       same fragment) after redirects.
+     - If the fragment target is missing, treat the link as failing and either
+       correct the fragment or replace the URL with a stable non-fragment
+       canonical page.
+3. Verify each link is topically relevant to the corresponding link text and the
+   discussed episode topic:
+   - Check page title and visible page content for alignment with the referenced
+     technology/product/concept.
+   - If the destination is broadly off-topic, replace it with a canonical
+     source or remove it.
+4. Fix any failing or weak links, then re-run validation until all links pass.
+5. Report validation outcome in the final response, including any links that
+   were replaced or removed.
+
 ## Important Rules
 
 - **Never modify** `episode`, `date`, `libsynId`, or `guest` frontmatter fields.
@@ -210,5 +245,9 @@ Update the episode markdown file with:
   directly referenced (cross-check with the `refs` fields in the JSONL topic
   file). If you can't find a canonical URL for something mentioned, omit it
   rather than guess.
+- **Validate links after writing** — every link in the final `## Links` section
+  must be checked for both reachability (real content, not errors/interstitials)
+  and relevance to the linked topic text. Fragment links (`#...`) must also
+  resolve to an actual anchor target on the destination page.
 - **Transcript and show notes stay in `tmp/`** — do not move, copy, or commit
   the transcript, show notes, or JSONL topic files.
