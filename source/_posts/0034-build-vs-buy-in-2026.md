@@ -1,6 +1,6 @@
 ---
 episode: 0034
-date: 2026-09-14
+date: 2026-09-07
 libsynId: 42840410
 summary: |
   Build versus buy is not a new question, but agentic coding changed the math
